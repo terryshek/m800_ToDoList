@@ -1,0 +1,17 @@
+{
+  "name": "public",
+  "version": "0.0.0",
+  "homepage": "https://github.com/terryshek/m800_ToDoList",
+  "authors": [
+    "Terry <terry@somday.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ]
+}
