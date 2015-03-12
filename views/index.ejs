@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html ng-app="app">
+<head>
     <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap-theme.min.css'/>
+    <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.min.css'/>
+    <script src="/vendor/angular/angular.min.js"></script>
+    <script src="/javascripts/app.js"></script>
+    <style>
+        .btnMargin {
+            margin: 8px 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" ng-controller="mainCtrl">
     <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-  </body>
+
+    <form ng-submit="addForm()">
+        <input type="text" name="addTask" id="addTask" ng-model="taskName" placeholder="Add your task !"/>
+        <button class="btn btn-warning navbar-btn pull-right btnMargin" ng-click="refresh()"><span
+                    class="glyphicon glyphicon-plus"></span> Add
+        </button>
+    </form>
+    <!--<div class="row col-md-6 col-md-offset-2 custyle">-->
+    <table class="table table-striped custab">
+        <thead>
+        <h1 class="navbar-btn pull-left">Client Query</h1>
+        <!--<div class="row">-->
+        <!--<div class="col-lg-6">-->
+        <!--<button class="btn btn-info navbar-btn pull-right btnMargin " ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>-->
+        <!--</div>-->
+        <!--<div class="col-lg-6">-->
+        <!--</div>-->
+
+        <!--</div>-->
+
+        <tr>
+            <th>Index</th>
+            <th>Title</th>
+            <th>Created date</th>
+            <th style="text-align: center">Action</th>
+        </tr>
+        </thead>
+        <tr ng-repeat="item in filteredList">
+            <td>{{$index+1}}</td>
+            <td>{{item.title}}</td>
+            <td>{{item.created_at}}</td>
+            <td class="text-center">
+                <a class="btn btn-danger btn-xs" ng-click="deleteQuery(item)"><span class="glyphicon glyphicon-trash">Delete</span></a>
+            <td>
+        </tr>
+    </table>
+</div>
+</body>
 </html>
