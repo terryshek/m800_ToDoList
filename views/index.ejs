@@ -6,6 +6,7 @@
     <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap-theme.min.css'/>
     <link rel='stylesheet' href='/vendor/bootstrap/dist/css/bootstrap.min.css'/>
     <script src="/vendor/angular/angular.min.js"></script>
+    <script src="vendor/moment/moment.js"></script>
     <script src="/javascripts/app.js"></script>
     <style>
         .btnMargin {
@@ -46,7 +47,7 @@
         <tr ng-repeat="item in filteredList">
             <td>{{$index+1}}</td>
             <td>{{item.title}}</td>
-            <td>{{item.created_at}}</td>
+            <td>{{getDisplayTime(item.created_at)}}</td>
             <td class="text-center">
                 <a class="btn btn-danger btn-xs" ng-click="deleteTask(item)"><span class="glyphicon glyphicon-trash">Delete</span></a>
             <td>

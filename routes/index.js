@@ -13,7 +13,7 @@ router.get('/getData', function(req,res){
 router.post('/saveData', function(req,res){
     console.log(req.body)
     var outputFilename = 'todolist_data.json';
-    fs.writeFile(outputFilename, JSON.stringify(req.body, null, 4), function(err) {
+    fs.writeFile(outputFilename, JSON.stringify(req.body), function(err) {
         if(err) {
             console.log(err);
         } else {

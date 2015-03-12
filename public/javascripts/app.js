@@ -17,14 +17,17 @@ app.controller('mainCtrl', function ($scope, mainService) {
         var index = $scope.filteredList.indexOf(item)
         mainService.taskList.splice(index, 1);
         $scope.addTask = "";
-        //mainService.saveData();
+        mainService.saveData();
     }
     $scope.addForm = function () {
         var obj = {title: $scope.addTask, created_at: Date()}
         mainService.taskList.push(obj)
         //$scope.addTask = "";
-        //mainService.saveData();
+        mainService.saveData();
     }
+    $scope.getDisplayTime = function(time){
+        return moment(time).format('DD MMM YYYY HH:mm');
+    };
 
 })
 app.service('mainService', function ($rootScope, $http) {
