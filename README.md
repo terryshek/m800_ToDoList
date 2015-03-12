@@ -7,7 +7,7 @@ when you at root, just type in cmd :
 "npm install"
 "cd public && bower insall "
 then finish  and lastly start the server,
-if you have grunt in you cpjust type "grunt"
+if you have grunt in you cp just type "grunt"
 if no , install it first:
 "npm install -g grunt-cli"
 if you don't want to install grunt cli , you can just type
