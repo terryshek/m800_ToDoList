@@ -11,4 +11,4 @@ if you have grunt in you cp just type "grunt"
 if no , install it first:
 "npm install -g grunt-cli"
 if you don't want to install grunt cli , you can just type
-"nodemon bin/www"
+"node bin/www"
