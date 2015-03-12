@@ -18,25 +18,26 @@
 <div class="container" ng-controller="mainCtrl">
     <h1><%= title %></h1>
 
-    <form ng-submit="addForm()">
-        <input type="text" name="addTask" id="addTask" ng-model="taskName" placeholder="Add your task !"/>
-        <button class="btn btn-warning navbar-btn pull-right btnMargin" ng-click="refresh()"><span
-                    class="glyphicon glyphicon-plus"></span> Add
-        </button>
+    <form role="form" name="taskForm" ng-submit="addForm(taskForm.$valid)" novalidate autocomplete="off">
+        <div class="form-group" ng-class="{ 'has-error' : taskForm.addTask.$invalid && !taskForm.addTask.$pristine }">
+            <input class="form-control input-sm" type="text" name="addTask" id="addTask" ng-model="addTask"
+                   placeholder="Add your task !" required/>
+
+            <p ng-show="taskForm.addTask.$invalid && !taskForm.addTask.$pristine" class="help-block">TaskName is
+                required.</p>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-warning pull-right"  ng-disabled="taskForm.$invalid"><span
+                        class="glyphicon glyphicon-plus"></span> Add
+            </button>
+        </div>
+
+
     </form>
     <!--<div class="row col-md-6 col-md-offset-2 custyle">-->
     <table class="table table-striped custab">
         <thead>
         <h1 class="navbar-btn pull-left">Client Query</h1>
-        <!--<div class="row">-->
-        <!--<div class="col-lg-6">-->
-        <!--<button class="btn btn-info navbar-btn pull-right btnMargin " ng-click="refresh()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>-->
-        <!--</div>-->
-        <!--<div class="col-lg-6">-->
-        <!--</div>-->
-
-        <!--</div>-->
-
         <tr>
             <th>Index</th>
             <th>Title</th>
@@ -49,7 +50,7 @@
             <td>{{item.title}}</td>
             <td>{{item.created_at}}</td>
             <td class="text-center">
-                <a class="btn btn-danger btn-xs" ng-click="deleteQuery(item)"><span class="glyphicon glyphicon-trash">Delete</span></a>
+                <a class="btn btn-danger btn-xs" ng-click="deleteTask(item)"><span class="glyphicon glyphicon-trash">Delete</span></a>
             <td>
         </tr>
     </table>
