@@ -10,5 +10,18 @@ router.get('/', function(req, res, next) {
 router.get('/getData', function(req,res){
     res.json(todolistData);
 })
+router.post('/saveData', function(req,res){
+    console.log(req.body)
+    var outputFilename = 'todolist_data.json';
+    fs.writeFile(outputFilename, JSON.stringify(req.body, null, 4), function(err) {
+        if(err) {
+            console.log(err);
+        } else {
+            console.log("JSON saved to " + outputFilename);
+            res.json({msg:'saved'});
+        }
+    });
+})
+
 
 module.exports = router;
