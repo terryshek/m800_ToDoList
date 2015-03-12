@@ -1,6 +1,7 @@
 module.exports = function(grunt){
 grunt.initConfig({
     nodemon: {
+        
         dev: {
             script: 'bin/www'
         }
@@ -8,5 +9,6 @@ grunt.initConfig({
 });
     // load nodemon
     grunt.loadNpmTasks('grunt-nodemon');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.registerTask('default',['nodemon'])
 }

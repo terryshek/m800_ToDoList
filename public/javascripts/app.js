@@ -22,7 +22,7 @@ app.controller('mainCtrl', function ($scope, mainService) {
     $scope.addForm = function () {
         var obj = {title: $scope.addTask, created_at: Date()}
         mainService.taskList.push(obj)
-        $scope.addTask = "";
+        //$scope.addTask = "";
         //mainService.saveData();
     }
 
