@@ -2,14 +2,43 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var todolistData = require('../todolist_data.json')
+var todolist_db = require("../modal")
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+    console.log(new getData())
   res.render('index', { title: 'ToDoList' });
 });
 router.get('/getData', function(req,res){
-    res.json(todolistData);
+    var reData =new getData()
+    todolist_db.find({}).sort( { "created_at": -1 }).find(function (err, todos) {
+        if (err) return next(err);
+        console.log(todos)
+        res.json(todos);
+    });
 })
+router.post('/addData', function(req,res){
+    console.log(req.body)
+    var task = new todolist_db({
+        taskName: req.body.title
+    })
+    task.save(function (err, data) {
+        if (err) console.log(err);
+        else console.log('Saved : ', data );
+        res.json({ 'Saved':data });
+    });
+    //res.json({ 'Saved':true });
+})
+router.delete('/deleteTask/:id',function(req, res) {
+    todolist_db.remove({
+        _id: req.params.id
+    }, function(err, bear) {
+        if (err)
+            res.send(err);
+
+        res.json({ message: 'Successfully deleted' });
+    });
+});
 router.post('/saveData', function(req,res){
     console.log(req.body)
     var outputFilename = 'todolist_data.json';
@@ -22,6 +51,8 @@ router.post('/saveData', function(req,res){
         }
     });
 })
-
+var getData = function(){
+    return todolistData
+}
 
 module.exports = router;

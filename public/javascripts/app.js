@@ -14,16 +14,15 @@ app.controller('mainCtrl', function ($scope, mainService) {
         $scope.filteredList = newVal;
     }, true);
     $scope.deleteTask = function (item) {
-        var index = $scope.filteredList.indexOf(item)
-        mainService.taskList.splice(index, 1);
-        $scope.addTask = "";
-        mainService.saveData();
+        var id = item._id
+        console.log(id)
+        mainService.deleteTask(id)
+        mainService.getData();
     }
     $scope.addForm = function () {
-        var obj = {title: $scope.addTask, created_at: Date()}
-        mainService.taskList.push(obj)
-        //$scope.addTask = "";
-        mainService.saveData();
+        var obj = {title: $scope.addTask}
+        mainService.addData(obj);
+        mainService.getData();
     }
     $scope.getDisplayTime = function(time){
         return moment(time).format('DD MMM YYYY HH:mm');
@@ -41,6 +40,13 @@ app.service('mainService', function ($rootScope, $http) {
         },
         saveData: function () {
             return $http.post('/saveData', _this.taskList)
+        },
+        addData:function(obj){
+            return $http.post('/addData', obj)
+        },
+        deleteTask:function(id){
+            console.log(id)
+            return $http.delete("/deleteTask/"+id)
         }
     }
     return _this

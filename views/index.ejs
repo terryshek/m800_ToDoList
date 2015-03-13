@@ -46,7 +46,7 @@
         </thead>
         <tr ng-repeat="item in filteredList">
             <td>{{$index+1}}</td>
-            <td>{{item.title}}</td>
+            <td>{{item.taskName}}</td>
             <td>{{getDisplayTime(item.created_at)}}</td>
             <td class="text-center">
                 <a class="btn btn-danger btn-xs" ng-click="deleteTask(item)"><span class="glyphicon glyphicon-trash">Delete</span></a>

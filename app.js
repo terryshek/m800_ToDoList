@@ -7,7 +7,15 @@ var bodyParser = require('body-parser');
 
 var routes = require('./routes/index');
 
-
+// Database
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://terryshek:Fredew33@ds045988.mongolab.com:45988/todolist', function(err) {
+    if(err) {
+        console.log('connection error', err);
+    } else {
+        console.log('connection successful');
+    }
+});
 var app = express();
 
 // view engine setup
