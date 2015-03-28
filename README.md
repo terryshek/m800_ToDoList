@@ -1,7 +1,7 @@
 # m800_ToDoList
 just a todolist using angular
 this is a todolist project using mean stack
-when begin , please clone the project or just download it as zip file 
+when begin please make sure you have install node js in your computer and clone the project or just download it as zip file 
 after downloading , please down the module and lib it need
 when you at root, just type in cmd :
 "npm install"
