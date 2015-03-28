@@ -15,7 +15,6 @@ app.controller('mainCtrl', function ($scope, mainService) {
     }, true);
     $scope.deleteTask = function (item) {
         var id = item._id
-        console.log(id)
         mainService.deleteTask(id)
         mainService.getData();
     }
@@ -27,6 +26,10 @@ app.controller('mainCtrl', function ($scope, mainService) {
     $scope.getDisplayTime = function(time){
         return moment(time).format('DD MMM YYYY HH:mm');
     };
+    $scope.updateTask = function(item){
+        mainService.updateData(item)
+        mainService.getData();
+    }
 
 })
 app.service('mainService', function ($rootScope, $http) {
@@ -43,6 +46,9 @@ app.service('mainService', function ($rootScope, $http) {
         },
         addData:function(obj){
             return $http.post('/addData', obj)
+        },
+        updateData:function(obj){
+            return $http.post("/updateTask/", obj)
         },
         deleteTask:function(id){
             console.log(id)

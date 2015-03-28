@@ -21,14 +21,25 @@ router.post('/addData', function(req,res){
     console.log(req.body)
     var task = new todolist_db({
         taskName: req.body.title
-    })
+    });
     task.save(function (err, data) {
         if (err) console.log(err);
         else console.log('Saved : ', data );
         res.json({ 'Saved':data });
     });
     //res.json({ 'Saved':true });
-})
+});
+router.post('/updateTask', function(req,res){
+    console.log(req.body)
+    var obj = req.body;
+    var id = obj._id;
+    delete obj._id;
+    todolist_db.update({_id: id}, obj, {upsert: true}, function (err, post) {
+        if (err) return next(err);
+        res.json(post);
+    });
+});
+
 router.delete('/deleteTask/:id',function(req, res) {
     todolist_db.remove({
         _id: req.params.id
